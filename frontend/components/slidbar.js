@@ -6,7 +6,10 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 
-import Home from "./Home";
+import AboutUS from "./AboutsUS";
+import ContactUS from "./ContactUS";
+import { EducationLevel, HowManyKidsCanHandle, Place } from "./Home";
+
 import Profile from "./profile";
 
 function Profile1() {
@@ -14,7 +17,13 @@ function Profile1() {
 }
 
 function Home1() {
-  return <Home />;
+  return (
+    <View>
+      <Place />
+      <EducationLevel />
+      <HowManyKidsCanHandle />
+    </View>
+  );
 }
 function LogOut() {
   return (
@@ -23,7 +32,12 @@ function LogOut() {
     </View>
   );
 }
-
+function AboutUs() {
+  return <AboutUS />;
+}
+function ContactUs() {
+  return <ContactUS />;
+}
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -41,6 +55,8 @@ function MyDrawer() {
     >
       <Drawer.Screen name="Home" component={Home1} />
       <Drawer.Screen name="Profile" component={Profile1} />
+      <Drawer.Screen name="About US" component={AboutUs} />
+      <Drawer.Screen name="Contact Us" component={ContactUs} />
       <Drawer.Screen name="LogOut" component={LogOut} />
     </Drawer.Navigator>
   );

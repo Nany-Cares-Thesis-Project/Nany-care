@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,17 +7,33 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-
+import { AntDesign } from "@expo/vector-icons";
+import TopPic from "./TopPic";
 export default function Profile() {
+  const [isError, setIsError] = useState(false);
+  // fetching data from server side
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      try {
+        const result = await axios.get("http://localhost:5000/userProf");
+        // result.data.map((item) => {
+        //   setSelectedValue(item.place);
+        console.log(result);
+        // });
+      } catch (error) {
+        setIsError(true);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <TopPic />
         <View style={styles.titleBar}>
-          <Ionicons name="ios-arrow-back" size={24} color="#52575D"></Ionicons>
-          <Ionicons name="md-more" size={24} color="#52575D"></Ionicons>
+          <AntDesign name="menufold" size={24} color="black" />
         </View>
-
         <View style={{ alignSelf: "center" }}>
           <View style={styles.profileImage}>
             <Image
@@ -25,15 +41,28 @@ export default function Profile() {
               style={styles.image}
               resizeMode="center"
             ></Image>
+
+            <View style={styles.active}></View>
           </View>
 
-          <View style={styles.active}></View>
           <View style={styles.infoContainer}>
             <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>
+              <AntDesign name="user" size={24} color="black" />
               Julie
             </Text>
+            <View>
+              <Text></Text>
+            </View>
             <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>
+              <AntDesign name="mail" size={20} color="black" />
               Julie@gmail.com
+            </Text>
+            <View>
+              <Text></Text>
+            </View>
+            <Text>
+              <AntDesign name="phone" size={24} color="black" />
+              0775177216
             </Text>
           </View>
         </View>
@@ -44,7 +73,6 @@ export default function Profile() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#FFF",
   },
   text: {

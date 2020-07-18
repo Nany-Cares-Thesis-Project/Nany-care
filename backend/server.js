@@ -1,8 +1,13 @@
 var express = require("express");
 var mongoose = require("mongoose");
+var items = require("./models/user");
+
+var Nany = items.Nany;
+var User = items.User;
 
 var app = express();
 var port = process.env.PORT || 5000;
+// console.log(items);
 
 require("dotenv").config(); // to read .env file
 
@@ -11,6 +16,46 @@ app.get("/", function (req, res) {
   console.log("test");
   res.send("server is a go!");
 });
+
+app.get("/userProf", function (req, res) {
+  User.find({}, function (err, user) {
+    if (err) {
+      res.json(err);
+    } else {
+      console.log(user);
+      res.json(user);
+    }
+  });
+});
+// users.get("/profile", function (req, res) {
+//   var decoded = jwt.verify(req.headers["authorization"], process.env.JWT_KEY);
+//   User.findOne({
+//     _id: decoded._id,
+//   })
+//     .then((user) => {
+//       if (user) {
+//         console.log(user);
+//         res.json(user);
+//       } else {
+//         res.send("User does not exist");
+//       }
+//     })
+//     .catch((err) => {
+//       res.send("error: " + err);
+//     });
+// });
+// get the selection based on place category  from database
+app.get("/ret", function getAlldatafromNanySchema(req, res) {
+  Nany.find({ place: "amman" }, function (err, nany) {
+    if (err) {
+      res.json(err);
+    } else {
+      console.log(req);
+      res.json(nany);
+    }
+  });
+});
+app.post("/Home");
 
 const mongoURI = process.env.ATLAS_URI;
 
