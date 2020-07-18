@@ -1,10 +1,5 @@
 import React from "react";
-import MyDrawer from "./components/slidbar";
-import { NavigationContainer } from "@react-navigation/native";
+import RegisterForm from "./components/RegisterForm";
 export default function App() {
-  return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
-  );
+  return <RegisterForm />;
 }
