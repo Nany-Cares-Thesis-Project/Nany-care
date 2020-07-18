@@ -6,7 +6,7 @@ export default function TopPic() {
     <View style={{ flex: 1, width: 100 + "%", height: 100 + "%" }}>
       <View style={styles.tempNav}>
         <Text style={[styles.text, { fontWeight: "200", fontSize: 15 }]}>
-          Nanny Care
+          Nanny Care App
         </Text>
       </View>
 
