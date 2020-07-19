@@ -8,6 +8,8 @@ import {
 
 import AboutUS from "./AboutsUS";
 import ContactUS from "./ContactUS";
+import RegisterForm from "./RegisterForm";
+
 import { EducationLevel, HowManyKidsCanHandle, Place } from "./Home";
 
 import Profile from "./profile";
@@ -38,6 +40,10 @@ function AboutUs() {
 function ContactUs() {
   return <ContactUS />;
 }
+
+function RegForm() {
+  return <RegisterForm />;
+}
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -57,6 +63,8 @@ function MyDrawer() {
       <Drawer.Screen name="Profile" component={Profile1} />
       <Drawer.Screen name="About US" component={AboutUs} />
       <Drawer.Screen name="Contact Us" component={ContactUs} />
+      <Drawer.Screen name="RegForm" component={RegForm} />
+
       <Drawer.Screen name="LogOut" component={LogOut} />
     </Drawer.Navigator>
   );

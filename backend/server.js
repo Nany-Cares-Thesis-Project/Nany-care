@@ -17,6 +17,7 @@ app.get("/", function (req, res) {
   res.send("server is a go!");
 });
 
+<<<<<<< HEAD
 app.get("/userProf", function (req, res) {
   User.find({}, function (err, user) {
     if (err) {
@@ -56,6 +57,56 @@ app.get("/ret", function getAlldatafromNanySchema(req, res) {
   });
 });
 app.post("/Home");
+=======
+// get the selection based on place category  from database    
+app.get ('/ret',function getAlldatafromNanySchema(req,res){
+      Nany.find({"place": "amman"}, function(err, nany){
+         if(err){
+           res.json(err);
+         } else {
+            console.log(req)  
+             res.json(nany);
+         }
+       });
+     });
+
+     app.post ('/signup',function (req,res){
+      const userData = {
+        name : req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        phoneNumer: req.body.phoneNumer
+
+    }
+        User.findOne({
+            email: req.body.email
+        })
+        .then(user => {
+            if(!user) {
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    userData.password = hash;
+                    User.create(userData)
+                    .then(user => {
+                        res.json({status: user.email + 'added'})
+                    })
+                    .catch(err=> {
+                        res.send('error: ' + err)
+                    })
+                })
+            } else {
+                        res.json({error: 'email already exist'})
+            }
+        })
+        .catch(res => {
+            res.send('error: ' + err)
+        })
+     });
+
+
+
+
+app.post('/Home', )
+>>>>>>> 806150db8d56baba7200ace9cfb6590847d3e2f4
 
 const mongoURI = process.env.ATLAS_URI;
 
