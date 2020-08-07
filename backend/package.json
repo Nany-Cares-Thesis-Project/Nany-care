@@ -10,21 +10,17 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "nodemon": "^2.0.4"
   },
- 
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@stripe/react-stripe-js": "^1.1.2",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
-<<<<<<< HEAD
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-=======
-    "config": "^3.3.1",
->>>>>>> 6cdd8a2511b7700e93ae393c511622fc2db4bdce
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -32,26 +28,15 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
-<<<<<<< HEAD
-    "mocha": "^8.1.0",
-=======
     "jwt-decode": "^2.2.0",
->>>>>>> 6cdd8a2511b7700e93ae393c511622fc2db4bdce
+    "mocha": "^8.1.0",
     "mongoose": "^5.9.24",
     "nodemailer": "^6.4.10",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-<<<<<<< HEAD
-    "stripe": "^8.78.0"
-
-=======
     "react-native-quidpay-webview": "^1.0.0",
     "stripe": "^8.79.0",
     "twilio": "^3.48.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.4"
->>>>>>> 6cdd8a2511b7700e93ae393c511622fc2db4bdce
   },
   "keywords": [],
   "description": ""
