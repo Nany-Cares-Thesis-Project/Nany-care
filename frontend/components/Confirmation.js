@@ -38,10 +38,10 @@ export default function Confirm() {
 
 
 
-
+useEffect(() => {
       try {
       //Retrieving user token, reserved nanny information and user location value from AsyncStorage
-    await AsyncStorage.multiGet(['token','nany','location']).then((res) => {
+     AsyncStorage.multiGet(['token','nany','location']).then((res) => {
       var nany =  JSON.parse(res[1][1]);
       var location =  JSON.parse(res[2][1]);
       setInfo(nany)
@@ -53,7 +53,7 @@ export default function Confirm() {
        throw error
        }
      
-  
+      })
 // function to send user location and total cost to the nanny via SMS
 
      const onSubmit = () => {
