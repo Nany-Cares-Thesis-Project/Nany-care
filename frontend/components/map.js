@@ -39,7 +39,7 @@ export default function MapScreen() {
   const [errorMsg, setErrorMsg] = useState(null);
   const onSubmit = (text) => {
     axios
-      .post("http://192.168.127.43:5000/send", selectedLocation)
+      .post("http://192.168.127.105:5000/send", selectedLocation)
       .then(
         // console.log('fnh');
         Actions.push("Confirm")

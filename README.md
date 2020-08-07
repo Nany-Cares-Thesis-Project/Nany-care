@@ -31,31 +31,22 @@ use it to :
     - NodeJS installed with NPM version 6
     - Expo Client installed on your mobile device
 
+## Testing
+Simple! Just clone the repo, then run npm install and the various node development dependencies will install to the node_modules directory of the project.
+If you have not done so, it is typically a good idea to add /node_modules/.bin to your $PATH so these modules bins are used.
+Now run npm test to start off the test suite.
 
-## Running the tests
-Explain how to run the automated tests for this system
-
-Break down into end to end tests
-Explain what these tests test and why
-
-Give an example
-And coding style tests
-Explain what these tests test and why
-
-Give an example
+## Dashboard 
+This dashboard is for the use of the Board of Directors of the Nany-care company in jordan 
+So that we can add Nany after reviewing and approving the employment application.
+Or we can delete the Nani whose work period has ended.
 
 ## Deployment
-Add additional notes about how to deploy this on a live system
-
-Built With
-Dropwizard - The web framework used
-Maven - Dependency Management
-ROME - Used to generate RSS Feeds
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+we are deployed dashboard in Heroku so you can use a live version of this dashboard at  https://nanny-care-dashboard.herokuapp.com/
 
 ## Team
 
 - **Product Owner**: Afnan Shwawreh
 - **Scrum Master**: Sura aloqaily
-- **Development Team Members**: Rawan abu-seini, Yousef mohammad , Nosiba Elayan
+- **Development Team Members**: Rawan abu-seini, Yousef mohammad , Nosiba Elayan ,Sura aloqaily ,Afnan Shwawreh .
+

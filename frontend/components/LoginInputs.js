@@ -37,7 +37,7 @@ export default function Login({ navigation }) {
             }}
             onSubmit={(values) => {
               axios
-                .post("http://192.168.127.43:5000/login", values)
+                .post("http://192.168.127.105:5000/login", values)
                 .then(function (res) {
                   console.log(res.data.token);
                   if (res.data.token) {

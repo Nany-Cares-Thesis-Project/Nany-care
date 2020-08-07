@@ -32,7 +32,7 @@ export default function Confirm() {
 
   onSubmit = () => {
     axios
-      .post("http://192.168.127.43:5000/sendSMS1", [
+      .post("http://192.168.127.105:5000/sendSMS1", [
         selectedLocation,
         total,
         info,

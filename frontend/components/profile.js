@@ -26,7 +26,7 @@ export default function Profile() {
     // }, {});
     // // console.log(Object.Values(userData[0]), "u");
     // console.log(userData, "uuu");
-    fetch(`http://192.168.127.43:5000/profile`)
+    fetch(`http://192.168.127.105:5000/profile`)
       .then((res) => res.json())
       .then((response) => {
         AsyncStorage.getItem("token").then((res) => {
@@ -42,7 +42,7 @@ export default function Profile() {
       .catch((error) => console.log(error));
   }, []);
   useEffect(() => {
-    axios.get("http://172.16.0.161:5000/profile").then((res) => {
+    axios.get("http://192.168.127.105:5000/profile").then((res) => {
       AsyncStorage.getItem("token").then((res) => {
         console.log(res.data);
       });

@@ -43,30 +43,40 @@ chai.use(chaiHttp)
 });
 
 /*
+  * Test the /admin endpoint
+  */
+ describe('/GET test', () => {
+  it(' test admin endpoint ', (done) => {
+    chai.request(server)
+        .get('/admin')
+        .end((err, res) => {
+          res.status.should.be.to.equal(200);
+          res.body.should.be.an('array');
+          done();
+        });
+  });
+});
+
+/*
   * Test the /POST route
   */
 //  describe('/POST user', () => {
-//   it('it should not POST a new user', (done) => {
+//   it('it should POST a new user', (done) => {
 //       let user = {
-//           name: "hala",
-//           email: "hello@hi.com",
-//           password: 1234567,
-//           phoneNumber: 071243
+//           name: "hala1",
+//           email: "hello11@hi.com",
+//           password: 1234567111,
+//           phoneNumber: 0712431111
 //       }
-//     chai.request(server)
-//         .post('/signup')
-//         .send(user)
-//         .end((err, res) => {
-//           //console.log(res.body.name)
-//                res.should.have.status(201);
-//               res.body.should.be.a('object');
-//               //res.body.should.have.property('errors');
-//              // res.body.errors.should.have.property('name');
-//              // res.body.errors.pages.should.have.property('email').eql('required');
-//           done();
+//       chai.request(server)
+//       .post('/signup')
+//       .send(user)
+//       .end((err, res) => {
+//             // res.should.have.status(200);
+//             // res.body.should.be.an('object')
+//             // res.body.should.have.property('errors');
+//             done();
 //         });
 //   });
 
 // });
-
-
