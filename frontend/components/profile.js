@@ -26,7 +26,7 @@ export default function Profile() {
     // }, {});
     // // console.log(Object.Values(userData[0]), "u");
     // console.log(userData, "uuu");
-    fetch(`http://192.168.8.100:5000/profile`)
+    fetch(`http://192.168.127.43:5000/profile`)
       .then((res) => res.json())
       .then((response) => {
         AsyncStorage.getItem("token").then((res) => {
@@ -38,11 +38,18 @@ export default function Profile() {
         userData.email = response[0].email;
         userData.image = response[0].image;
         userData.phoneNumber = response[0].phoneNumber;
-        console.log(userData, "data");
       })
       .catch((error) => console.log(error));
   }, []);
-
+  useEffect(() => {
+    axios.get("http://172.16.0.161:5000/profile").then((res) => {
+      AsyncStorage.getItem("token").then((res) => {
+        console.log(res.data);
+      });
+      setUserData(res.data);
+    }, {});
+    console.log(userData);
+  });
   return (
     <ImageBackground
       source={{

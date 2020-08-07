@@ -1,5 +1,12 @@
-import React from "react";
-import { ScrollView, SafeAreaView } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+  KeyboardAvoidingView,
+} from "react-native";
 import { Formik } from "formik";
 import { View } from "react-native-animatable";
 import TextTicker from "react-native-text-ticker";
@@ -9,11 +16,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import {
-  StyleSheet,
-  ImageBackground,
-  KeyboardAvoidingView,
-} from "react-native";
+import AwesomeAlert from "react-native-awesome-alerts";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -58,6 +61,14 @@ const reviewSchema = yup.object({
 });
 
 export default function HiringForm() {
+  const [showAlert, setshowAlert] = useState(false);
+  showAlertfun = () => {
+    setshowAlert(true);
+  };
+
+  hideAlertfun = () => {
+    setshowAlert(false);
+  };
   return (
     <ImageBackground
       source={image}
@@ -101,9 +112,12 @@ export default function HiringForm() {
                 onSubmit={(values) => {
                   console.log(values);
                   axios
-                    .post("192.168.8.100:5000/HiringForm", values)
+                    .post("http://192.168.127.43:5000/HiringForm", values)
                     .then(function (response) {
                       console.log(response);
+                      alert(
+                        "Thank you , we will contact you as soon as possible"
+                      );
                     })
                     .catch(function (error) {
                       console.log(error);
@@ -399,14 +413,40 @@ export default function HiringForm() {
                       }}
                     >
                       {/* submit bttn  */}
-                      <Button
-                        title="Submit"
-                        mode="contained"
-                        color="rgba(255,255,255,0.6)"
-                        onPress={props.handleSubmit}
-                      >
-                        <Text style={{ color: "black" }}>Send</Text>
-                      </Button>
+
+                      <View style={styles.alertcontainer}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            showAlertfun();
+                          }}
+                          style={{
+                            width: "50%",
+                            marginRight: "40%",
+                          }}
+                        >
+                          <View style={styles.alertbutton}>
+                            <Text style={styles.alerttext}>Send</Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <AwesomeAlert
+                          show={showAlert}
+                          showProgress={false}
+                          title="Nanny app "
+                          message="You are trying to employ to nanny care company! you are responsable for the information that you send"
+                          closeOnTouchOutside={true}
+                          closeOnHardwareBackPress={true}
+                          showCancelButton={true}
+                          showConfirmButton={true}
+                          cancelText="No, cancel"
+                          confirmText="Yes, send my information "
+                          confirmButtonColor="#DD6B55"
+                          onCancelPressed={() => {
+                            hideAlertfun();
+                          }}
+                          onConfirmPressed={props.handleSubmit}
+                        />
+                      </View>
                     </View>
                   </View>
                 )}
@@ -428,6 +468,27 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
+    justifyContent: "center",
+  },
+  alertcontainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  alertbutton: {
+    margin: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#ffb028",
+
+    backgroundColor: "rgba(255,225,225,0.3)",
+  },
+  alerttext: {
+    color: "black",
+    fontSize: 15,
+    marginRight: "30%",
     justifyContent: "center",
   },
 });

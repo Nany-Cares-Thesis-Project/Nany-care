@@ -8,9 +8,6 @@ import axios from "axios";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 import { Actions } from "react-native-router-flux";
-import { AsyncStorage } from "react-native";
-
- 
 
 const localNotification = {
   title: "Nany APP",
@@ -39,14 +36,10 @@ export default function MapScreen() {
     mocked: false,
     timestamp: 1577294172000,
   });
-
-   //store user location in AsyncStorage
-   AsyncStorage.setItem('location', JSON.stringify(selectedLocation))
-   
   const [errorMsg, setErrorMsg] = useState(null);
   const onSubmit = (text) => {
     axios
-      .post("http://192.168.1.19:5000/send", selectedLocation)
+      .post("http://192.168.127.43:5000/send", selectedLocation)
       .then(
         // console.log('fnh');
         Actions.push("Confirm")
@@ -188,4 +181,3 @@ const styles = StyleSheet.create({
     backgroundColor: "#007AFF",
   },
 });
-

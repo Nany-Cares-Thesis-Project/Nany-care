@@ -37,7 +37,7 @@ export default function Login({ navigation }) {
             }}
             onSubmit={(values) => {
               axios
-                .post("http://192.168.1.19:5000/login", values)
+                .post("http://192.168.127.43:5000/login", values)
                 .then(function (res) {
                   console.log(res.data.token);
                   if (res.data.token) {
@@ -49,6 +49,9 @@ export default function Login({ navigation }) {
                   } else {
                     if (res.data === "User not exist") {
                       alert(" User does not exist");
+                    }
+                    if (res.data === "password or email wrong") {
+                      alert("wrong password or email");
                     }
                   }
                 })

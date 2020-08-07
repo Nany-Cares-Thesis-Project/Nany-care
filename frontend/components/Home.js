@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
 import { Button } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
@@ -28,15 +29,13 @@ import Profile from "./profile";
 import MapScreen from "./map";
 import Logout from "./Logout";
 import Confirm from "./Confirmation";
-import { AsyncStorage } from 'react-native';
-
-
+import { AsyncStorage } from "react-native";
 
 const image = {
   uri:
     "https://cdn.kinsights.com/cache/a3/5d/a35d9ef62daa9876a5598868592d316c.jpg",
 };
-// import { TokenPage, TokenList } from "twilio/lib/rest/api/v2010/account/token";
+
 function Profile1() {
   return <Profile />;
 }
@@ -54,7 +53,7 @@ function Map1() {
 function ContactUs() {
   return <ContactUS />;
 }
-
+// Drower to display navigation pages
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -73,7 +72,7 @@ function MyDrawer({ navigation }) {
           name="Home"
           component={function AllNany({ navigation }) {
             // function to render results based on selected category
-            // states to use
+          
             const [nanylist, setNanylist] = useState([]); // state to hold all nanny records data
             const [selectedCity, setSelectedCity] = useState([]); // state to change the selected place based on picker selection
             const [selectedKids, setSelectedKids] = useState([]); // state to change the selected Kids number based on picker selection
@@ -82,7 +81,7 @@ function MyDrawer({ navigation }) {
 
             //fetching data from the db
             useEffect(() => {
-              fetch(`192.168.8.100:5000/ret`)
+              fetch(`http://192.168.127.43:5000/ret`)
                 .then((res) => res.json())
                 .then((response) => {
                   setNanylist(response);
@@ -90,7 +89,7 @@ function MyDrawer({ navigation }) {
                 .catch((error) => console.log(error));
             }, []);
 
-            // filtering the list data
+            // filtering list data
             function listFilter() {
               if (selectedCity === "allNany") {
                 setSelected(nanylist);
@@ -111,19 +110,16 @@ function MyDrawer({ navigation }) {
               // function to reserve the nanny called once the reserve button clicked
 
               axios
-                .post(`192.168.8.100:5000/reserve`, nany)
-                .then((res) => res
-               )
+                .post(`http://192.168.127.43:5000/reserve`, nany)
+                .then((res) => res)
                 .then((data) => {
-                
                   //saving nanny info into AsyncStorage
-                  AsyncStorage.setItem('nany', JSON.stringify(nany))
+                  AsyncStorage.setItem("nany", JSON.stringify(nany));
                   // getting user token value + Nanny info
-                  AsyncStorage.multiGet(['token','nany']).then((res) => {
-                    console.log(res)
-                  })
-                
-                } )
+                  AsyncStorage.multiGet(["token", "nany"]).then((res) => {
+                    console.log(res);
+                  });
+                })
                 .then(() => {
                   Actions.push("MapScreen");
                 })
@@ -254,12 +250,25 @@ function MyDrawer({ navigation }) {
                               <Card
                                 flex
                                 borderless
-                                title={nany.name}
-                                caption={nany.cost + " $ /H"}
-                                location={nany.place}
+                                title={nany.name + "-" + nany.age + "Years old"}
+                                caption={nany.cost + " JD /H"}
                                 image={nany.image}
                                 style={{ backgroundColor: "white" }}
-                              />
+                              >
+                                <View
+                                  style={{
+                                    flexDirection: "row",
+                                    marginLeft: "70%",
+                                  }}
+                                >
+                                  <MaterialIcons
+                                    name="place"
+                                    size={24}
+                                    color="black"
+                                  />
+                                  <Text>{nany.place}</Text>
+                                </View>
+                              </Card>
                               <View>
                                 <Button
                                   title="Submit"
@@ -287,7 +296,7 @@ function MyDrawer({ navigation }) {
         <Drawer.Screen name="Profile" component={Profile1} />
         <Drawer.Screen name="Contact Us" component={ContactUs} />
         <Drawer.Screen name="Logout" component={Logout1} />
-        <Drawer.Screen name="Confirm" component={Confirm1} />
+        {/* <Drawer.Screen name="Confirm" component={Confirm1} /> */}
       </Drawer.Navigator>
     </NavigationContainer>
   );
