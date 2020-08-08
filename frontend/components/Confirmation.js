@@ -13,14 +13,16 @@ export default function Confirm() {
   const [selectedLocation, setSelectedLocation] = useState({});
   var calculate;
   var onSubmit;
-  useEffect(() => {
+
+
+  useEffect(() => {//Retrieving user token, reserved nanny information and user location value from AsyncStorage
     try {
-      //Retrieving user token, reserved nanny information and user location value from AsyncStorage
+      
       AsyncStorage.multiGet(["token", "nany", "location"]).then((res) => {
+
         var nany = JSON.parse(res[1][1]);
         var location = JSON.parse(res[2][1]);
         setInfo(nany);
-        console.log("hi3");
         setSelectedLocation(location);
       });
     } catch (error) {
@@ -29,7 +31,6 @@ export default function Confirm() {
   }, []);
 
   // function to send user location and total cost to the nanny via SMS
-
   onSubmit = () => {
     axios
       .post("http://192.168.127.105:5000/sendSMS1", [
@@ -45,28 +46,26 @@ export default function Confirm() {
       });
   };
 
-  console.log(total);
-  //Calculating total cost based on user input for how many hours he will reserve the nanny service
 
+  //Calculating total cost based on user input for how many hours he will reserve the nanny service
   calculate = function calculateTotal() {
     console.log(info.cost * value);
     var totalCost = info.cost * value;
     setTotal(totalCost);
     console.log(total, "to");
-
     alert("Your reservation done \n Your service costs: " + total);
+
   };
 
   return (
     <View>
       <>
         <View>
+          {/* Card to display selected Nanny */}
           <Card
             title={info.name}
             caption={info.cost + "  JD  /H"}
-            // location={info.place}
             image={info.image}
-            // style={{ backgroundColor: "white" }}
             style={styles.card}
           >
             <View
@@ -127,7 +126,8 @@ export default function Confirm() {
     </View>
   );
 }
-// export default Confirm;
+
+
 /*******************************Styling********************************/
 const styles = StyleSheet.create({
   image: {

@@ -35,7 +35,7 @@ const image = {
   uri:
     "https://cdn.kinsights.com/cache/a3/5d/a35d9ef62daa9876a5598868592d316c.jpg",
 };
-// import { TokenPage, TokenList } from "twilio/lib/rest/api/v2010/account/token";
+
 function Profile1() {
   return <Profile />;
 }
@@ -53,7 +53,7 @@ function Map1() {
 function ContactUs() {
   return <ContactUS />;
 }
-
+// Drower to display navigation pages
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -72,7 +72,7 @@ function MyDrawer({ navigation }) {
           name="Home"
           component={function AllNany({ navigation }) {
             // function to render results based on selected category
-            // states to use
+          
             const [nanylist, setNanylist] = useState([]); // state to hold all nanny records data
             const [selectedCity, setSelectedCity] = useState([]); // state to change the selected place based on picker selection
             const [selectedKids, setSelectedKids] = useState([]); // state to change the selected Kids number based on picker selection
@@ -89,7 +89,7 @@ function MyDrawer({ navigation }) {
                 .catch((error) => console.log(error));
             }, []);
 
-            // filtering the list data
+            // filtering list data
             function listFilter() {
               if (selectedCity === "allNany") {
                 setSelected(nanylist);
